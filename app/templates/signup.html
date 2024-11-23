@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+
+{% block title %}Neon - Sign Up{% endblock %}
+
+{% block content %}
+<div class="w-full h-screen flex items-center justify-center bg-gray-50">
+    {% if messages %}
+    <div class="absolute top-20 right-4">
+        {% for message in messages %}
+        <div class="
+                text-sm font-medium py-2 px-4 border-l-2 rounded-lg
+                {% if message.tags == 'success' %}
+                    text-green-600 bg-green-100 border-l-green-600
+                {% elif message.tags == 'error' %}
+                    text-red-600 bg-red-100 border-l-red-600
+                {% else %}
+                    text-gray-600 bg-gray-100 border-l-gray-600
+                {% endif %}
+            ">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-lg p-8 space-y-6">
+        {% csrf_token %}
+        <h2 class="text-3xl font-semibold text-center text-teal-600">Sign Up - Registration</h2>
+
+        <div class="space-y-4">
+            <div class="flex flex-row gap-4">
+                <div class="w-full">
+                    <input type="text" placeholder="First Name" name="fname" id="fname"
+                        class="w-full p-4 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500" />
+                </div>
+    
+                <div class="w-full">
+                    <input type="text" placeholder="Last Name" name="lname" id="lname"
+                        class="w-full p-4 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                        required />
+                </div>
+            </div>
+
+            <div class="w-full">
+                <input type="text" placeholder="Username" name="username" id="username"
+                    class="w-full p-4 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                    required />
+                {% if form.username.errors %}
+                <div class="text-sm text-red-500">
+                    {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="w-full">
+                <input type="password" placeholder="Password" name="password" id="password"
+                    class="w-full p-4 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                    required />
+                {% if form.password.errors %}
+                <div class="text-sm text-red-500">
+                    {% for error in form.password.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" name="consent" id="consent" class="h-5 w-5 text-teal-500 focus:ring-teal-500"
+                    required />
+                <label for="consent" class="text-gray-600 text-sm">By checking this box, you agree to our <a href="#"
+                        class="text-teal-500 hover:underline">terms and conditions</a>.</label>
+            </div>
+        </div>
+
+        <button type="submit"
+            class="w-full py-3 mt-6 rounded-full bg-teal-500 text-white font-semibold focus:outline-none hover:bg-teal-600 transition ease-in-out duration-200">
+            Register
+        </button>
+    </form>
+</div>
+{% endblock %}
