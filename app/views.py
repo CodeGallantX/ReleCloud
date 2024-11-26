@@ -15,6 +15,10 @@ def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', {'destinations': all_destinations})
 
+def cruises(request):
+    all_cruises = models.Cruise.objects.all()
+    return render(request, 'cruises.html', {'cruises': all_cruises})
+
 def login(request):
     return render(request, 'login.html')
 
