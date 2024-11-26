@@ -33,6 +33,21 @@ class DestinationDetailView(generic.DetailView):
     template_name = 'destinations_detail.html'
     context_object_name = 'destination'
 
+class DestinationCreateView(generic.CreateView):
+    model = models.Destination
+    template_name = 'destinations_form.html'
+    context_object_name = 'destination'
+
+class DestinationUpdateView(generic.UpdateView):
+    model = models.Destination
+    template_name = 'destinations_form.html'
+    context_object_name = 'destination'
+
+class DestinationDeleteView(generic.DeleteView):
+    model = models.Destination
+    template_name = 'destinations_detail.html'
+    context_object_name = 'destination'
+
 class CruiseDetailView(generic.DetailView):
     model = models.Cruise
     template_name='cruise_detail.html'
